@@ -11,35 +11,39 @@ public class RainGame {
 		// REMEMBER TO COMMIT this file...
 	
 		int x=0, y=0, dx=0, dy=0, score = -1, level = 0;
-		String text = "";
+		String text1 = "";
+	
 	
 		
-		Zen.setFont("Helvetica-64");
+		Zen.setFont("Helvetica-40");
 		while (Zen.isRunning()) {
-			  level=score/10+1;
-			if (text.length() == 0) {
+			  level=score/5+1;
+			if (text1.length() == 0) {
 				x = Zen.getZenWidth()/2;
 				y = 0;
 				dx = 0;
-				dy = 10 + 10*level;
-				text = "" + (int) (Math.random() * 999);
+				dy = 10 + 5*level;
+				text1 = "" + (int) (Math.random() * 999);
 			score++;
-			}
+			 }
 		  
-			Zen.setColor(200, 250, 100);
+			Zen.setColor(200, 250, 50);
 			Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
 
-			Zen.setColor(250, 0, 250);
-			Zen.drawText(text, x, y);
+			Zen.setColor(250, 0, 0);
+			Zen.drawText(text1, x, y);
 			
-			Zen.drawText("Level: " + level, 10,50);
-			Zen.drawText("Score: " + score, 10,120);
+			Zen.drawText("Level: " + level, 5,50);
+			Zen.drawText("Score: " + score, 5,100);
 			
 			x += dx;
 			y += dy;
-			 if (y > Zen.getZenHeight()) {
-				 score -= 2;
-				 text = "";
+			 if (y > Zen.getZenHeight())
+			 { 
+			 score -= 2;
+			 
+			 text1 = "";
+			 
 			 }
 			// Find out what keys the user has been pressing.
 			String user = Zen.getEditText();
@@ -50,13 +54,13 @@ public class RainGame {
 			
 			for(int i=0;i < user.length();i++) {
 				char c = user.charAt(i);
-				if(c == text.charAt(0)&& text.length()> 0)
-					text = text.substring(1,text.length()); // all except first character
+				if(c == text1.charAt(0)&& text1.length()> 0)
+					text1 = text1.substring(1,text1.length()); // all except first character
 			}
+			
 			Zen.flipBuffer();
 			Zen.sleep(90);// sleep for 90 milliseconds
 
 		}
-	}
-
+}
 }
