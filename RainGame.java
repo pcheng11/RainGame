@@ -17,13 +17,14 @@ public class RainGame {
 		
 		Zen.setFont("Helvetica-40");
 		while (Zen.isRunning()) {
-			  level=score/5+1;
+             if (score >=0)
+				  level=score/5+1;
 			if (text1.length() == 0) {
 				x = Zen.getZenWidth()/2;
 				y = 0;
 				dx = 0;
-				dy = 10 + 5*level;
-				text1 = "" + (int) (Math.random() * 999);
+				dy = 10 + 5*(Math.abs(level));
+				text1 = "" + (int) (Math.random() * 999*level);
 			score++;
 			 }
 		  
@@ -41,8 +42,13 @@ public class RainGame {
 			 if (y > Zen.getZenHeight())
 			 { 
 			 score -= 2;
-			 
+			 if (score < 0)
+			 {
+				level=1; 
+				 
+			 }
 			 text1 = "";
+	
 			 
 			 }
 			// Find out what keys the user has been pressing.
