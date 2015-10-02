@@ -10,28 +10,28 @@ public class RainGame {
 		// Do not put your name or your UIN. 
 		// REMEMBER TO COMMIT this file...
 	
-		int x=0, y=0, dx=0, dy=0, score = -1, level = 0;
+		int x=0, y=0, dx=0, dy=0, score = -1, level = 1, count = 0;
 		String text1 = "";
-	
-	
+		
+		boolean zenIsRunning = true;
 		
 		Zen.setFont("Helvetica-40");
-		while (Zen.isRunning()) {
+		while (Zen.isRunning() && zenIsRunning) {
              if (score >=0)
 				  level=score/5+1;
 			if (text1.length() == 0) {
 				x = Zen.getZenWidth()/2;
 				y = 0;
 				dx = 0;
-				dy = 10 + 5*(Math.abs(level));
-				text1 = "" + (int) (Math.random() * 999*level);
+				dy = 10+ 5*(Math.abs(level));
+				text1 = "" + (int) (Math.random() * 999*(Math.abs(level)));
 			score++;
 			 }
 		  
-			Zen.setColor(200, 250, 50);
+			Zen.setColor(250, 250, 250);
 			Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
 
-			Zen.setColor(250, 0, 0);
+			Zen.setColor(0,50, 200);
 			Zen.drawText(text1, x, y);
 			
 			Zen.drawText("Level: " + level, 5,50);
@@ -42,6 +42,11 @@ public class RainGame {
 			 if (y > Zen.getZenHeight())
 			 { 
 			 score -= 2;
+			 count++;
+			 if (count>=5)
+			 {
+				 zenIsRunning = false;
+			 }
 			 if (score < 0)
 			 {
 				level=1; 
