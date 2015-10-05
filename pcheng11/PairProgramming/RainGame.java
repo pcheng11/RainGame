@@ -10,12 +10,12 @@ public class RainGame {
 		// Do not put your name or your UIN. 
 		// REMEMBER TO COMMIT this file...
 	
-		int x=0, y=0, dx=0, dy=0, score = -1, level = 1, count = 0;
+		int x=0, y=0, dx=0, dy=0, score = -1, level = 1, count = 0,life = 5;
 		String text1 = "";
 		
 		boolean zenIsRunning = true;
 		
-		Zen.setFont("Helvetica-40");
+		Zen.setFont("Helvetica-38");
 		while (Zen.isRunning() && zenIsRunning) {
              if (score >=0)
 				  level=score/5+1;
@@ -23,29 +23,38 @@ public class RainGame {
 				x = Zen.getZenWidth()/2;
 				y = 0;
 				dx = 0;
-				dy = 10+ 5*(Math.abs(level));
-				text1 = "" + (int) (Math.random() * 999*(Math.abs(level)));
+				dy = 10+ 2*(Math.abs(level));
+				text1 = "" + (int) (Math.random() * 999*(Math.abs(Math.pow(10, (double)(level-1)))));
 			score++;
 			 }
 		  
-			Zen.setColor(250, 250, 250);
-			Zen.fillRect(0, 0, Zen.getZenWidth(), Zen.getZenHeight());
-
-			Zen.setColor(0,50, 200);
+			Zen.setColor(250, 100, 0);
+			Zen.fillRect(100, 0, Zen.getZenWidth(), Zen.getZenHeight());
+			Zen.setColor(0,0,150);
+			Zen.fillRect(0, 0, Zen.getZenWidth()/2, Zen.getZenHeight());
+			Zen.setColor(250,100, 0);
+			Zen.fillRect(0, 0, Zen.getZenWidth()/2, Zen.getZenHeight()/2);
+			Zen.setColor(0,0, 150);
+			Zen.fillRect(320, 0, Zen.getZenWidth()/2, Zen.getZenHeight()/2);
+			Zen.setColor(250,250, 250);
 			Zen.drawText(text1, x, y);
 			
 			Zen.drawText("Level: " + level, 5,50);
 			Zen.drawText("Score: " + score, 5,100);
-			
+			Zen.drawText("Life: " + life,5,150);
 			x += dx;
 			y += dy;
 			 if (y > Zen.getZenHeight())
 			 { 
-			 score -= 2;
+			 life --;
+			 score --;
+			
+			
 			 count++;
-			 if (count>=5)
+			 if (count>5)
 			 {
 				 zenIsRunning = false;
+				 Zen.drawText("You Lose!", 280, 280);
 			 }
 			 if (score < 0)
 			 {

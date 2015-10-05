@@ -221,8 +221,8 @@ public class Zen extends JApplet {
 		getInstanceFromThread().drawArc(x, y, width, height, startAngle,
 				arcAngle);
 	}
-
-	public static void fillOval(int minX, int minY, int width, int height) {
+public static void fillOval(int minX, int minY, int width, int height
+	) {
 		getInstanceFromThread().fillOval(minX, minY, width, height);
 	}
 
