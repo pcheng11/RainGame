@@ -10,12 +10,28 @@ public class RainGame {
 		// Do not put your name or your UIN. 
 		// REMEMBER TO COMMIT this file...
 	
-		int x=0, y=0, dx=0, dy=0, score = -1, level = 1, count = 0,life = 5;
+		
+		
+		
+		Zen.setColor(255, 255, 255); 
+		Zen.setFont("Times-60");
+		Zen.drawText("Welcome to the game!", 50, 240);
+		Zen.sleep(1000);
+		Zen.setFont("Times-30");
+		Zen.drawText("Please Click the screen to start", 120, 400);
+		
+		Zen.waitForClick();
+		
+		
+		
+		
+		
+		int x=0, y=0, dx=0, dy=0, score = -1, level = 1,life = 5;
 		String text1 = "";
 		
 		boolean zenIsRunning = true;
 		
-		Zen.setFont("Helvetica-38");
+		Zen.setFont("Times-38");
 		while (Zen.isRunning() && zenIsRunning) {
              if (score >=0)
 				  level=score/5+1;
@@ -23,8 +39,8 @@ public class RainGame {
 				x = Zen.getZenWidth()/2;
 				y = 0;
 				dx = 0;
-				dy = 10+ 2*(Math.abs(level));
-				text1 = "" + (int) (Math.random() * 999*(Math.abs(Math.pow(10, (double)(level-1)))));
+				dy = 10+ 4*(Math.abs(level));
+				text1 = "" + (int) (Math.random() * 999);
 			score++;
 			 }
 		  
@@ -37,6 +53,9 @@ public class RainGame {
 			Zen.setColor(0,0, 150);
 			Zen.fillRect(320, 0, Zen.getZenWidth()/2, Zen.getZenHeight()/2);
 			Zen.setColor(250,250, 250);
+			
+			
+			
 			Zen.drawText(text1, x, y);
 			
 			Zen.drawText("Level: " + level, 5,50);
@@ -44,17 +63,21 @@ public class RainGame {
 			Zen.drawText("Life: " + life,5,150);
 			x += dx;
 			y += dy;
-			 if (y > Zen.getZenHeight())
+			 if (y >= Zen.getZenHeight())
 			 { 
 			 life --;
+			
 			 score --;
 			
 			
-			 count++;
-			 if (count>5)
-			 {
+			 
+			 if (life == 0 )
+			 {    
+				 Zen.setColor(0,0,0);
+				 Zen.fillRect(0,0, Zen.getZenWidth(),Zen.getZenHeight());
+				 Zen.setColor(250,250,250);
+				 Zen.drawText("You Lose!", 250, 280);
 				 zenIsRunning = false;
-				 Zen.drawText("You Lose!", 280, 280);
 			 }
 			 if (score < 0)
 			 {
