@@ -39,7 +39,7 @@ public class RainGame {
 				x = Zen.getZenWidth()/2;
 				y = 0;
 				dx = 0;
-				dy = 10+ 4*(Math.abs(level));
+				dy = 10+ 5*(Math.abs(level));
 				text1 = "" + (int) (Math.random() * 999);
 			score++;
 			 }
